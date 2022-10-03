@@ -19,7 +19,7 @@ class stack
 {
 public:
     void push(T2 data);
-    void pop();
+    T2 pop();
     T2 top();
     int Size();
 
@@ -29,10 +29,10 @@ private:
     int size = 0;
 };
 
-template <class T2>
-void stack<T2>::push(T2 data)
+template <class T3>
+void stack<T3>::push(T3 data)
 {
-    node<T2> *newNode = new node<T2>(data);
+    node<T3> *newNode = new node<T3>(data);
     newNode->data = data;
 
     if (beginNode == nullptr)
@@ -48,3 +48,15 @@ void stack<T2>::push(T2 data)
     size++;
 }
 
+template <class T4>
+T4 stack<T4>::pop()
+{
+    size--;
+    node<T4> *tempNode = beginNode->nextNode;
+    T4 temp = beginNode->data;
+    beginNode->nextNode = nullptr;
+    beginNode->previousNode = nullptr;
+    delete beginNode;
+    beginNode = tempNode;
+    return temp;
+}
