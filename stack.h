@@ -22,6 +22,7 @@ public:
     T2 pop();
     T2 top();
     int Size();
+    bool isEmpty();
 
 private:
     node<T2> *beginNode = nullptr;
@@ -37,14 +38,17 @@ void stack<T3>::push(T3 data)
 
     if (beginNode == nullptr)
     {
+        // insert the beginNode
         beginNode = newNode;
+        endNode = newNode;
     }
     else
     {
-        newNode->previousNode = endNode;
-        endNode->nextNode = newNode;
+        // insert Node before the begin Node
+        newNode->nextNode = beginNode;
+        beginNode->previousNode = newNode;
     }
-    endNode = newNode;
+    beginNode = newNode;
     size++;
 }
 
@@ -59,4 +63,22 @@ T4 stack<T4>::pop()
     delete beginNode;
     beginNode = tempNode;
     return temp;
+}
+
+template <class T5>
+int stack<T5>::Size()
+{
+    return size;
+}
+
+template <class T6>
+bool stack<T6>::isEmpty()
+{
+    return size!=0;
+}
+
+template <class T7>
+T7 stack<T7>::top()
+{
+    return beginNode->data;
 }
