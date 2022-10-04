@@ -56,11 +56,16 @@ template <class T4>
 T4 stack<T4>::pop()
 {
     size--;
+    //storge the node after beginNode
     node<T4> *tempNode = beginNode->nextNode;
     T4 temp = beginNode->data;
+
+    //delete beginNode
     beginNode->nextNode = nullptr;
     beginNode->previousNode = nullptr;
     delete beginNode;
+    
+    //recover beginNode
     beginNode = tempNode;
     return temp;
 }
